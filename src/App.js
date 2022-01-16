@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import { BrowserRouter, Route, Link } from 'react-router-dom'
+import Index from './pages/Index'
+import Second from './pages/Second'
+import SecondChild from './pages/SecondChild'
+import Third from './pages/Third'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => (
+  <BrowserRouter>
+    <h1>react-routerに入門する。</h1>
+    <nav>
+      <ul>
+        <li><Link  to='/'>Index</Link></li>
+        <li><Link  to='/second'>Second</Link></li>
+        <li><Link to='/second/neko'>Second-neko</Link></li>
+        <li><Link to='/third'>Third</Link></li>
+      </ul>
+    </nav>
+    <article>
+      <Route exact path='/' component={Index} />
+      <Route exact path='/second' component={Second} />
+      <Route path='/second/:id' component={SecondChild} />
+      <Route path='/third' component={Third} />
+    </article>
+  </BrowserRouter>
+)
 
-export default App;
+
+
+
+
+export default App
